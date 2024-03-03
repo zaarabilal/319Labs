@@ -214,27 +214,32 @@ int main(void){// main6
 //   -call Sound_Start with the appropriate period
       uint32_t keypressed = Key_In();
       uint32_t prevkey;
+      uint32_t flag;
       uint32_t period = 0;
       if (keypressed== 0x01){
           period = B7;
           Sound_Start(period);
           prevkey=keypressed;
+          flag=1;
 
       }
       if (keypressed== 0x02){
                period = EF0;
                Sound_Start(period);
                prevkey=keypressed;
+               flag=1;
            }
       if (keypressed== 0x04){
                      period = GF0;
                      Sound_Start(period);
                      prevkey=keypressed;
+                     flag=1;
                  }
       if (keypressed== 0x08){
                         period = AF0;
                         Sound_Start(period);
                         prevkey=keypressed;
+                        flag=1;
                        }
 
 //   -call Debug_Dump with period
@@ -243,6 +248,7 @@ int main(void){// main6
 //   -call Sound_Stop
           if (keypressed==0 & keypressed!=prevkey){
           Sound_Stop();
+          flag=0;
           }
 // I.e., if key has not changed DO NOT CALL start or stop
     
